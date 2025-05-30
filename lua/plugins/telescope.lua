@@ -30,11 +30,14 @@ return {
           sorting_strategy = "ascending",
           layout_strategy = "horizontal",
           layout_config = {
-            prompt_position = "top",
-            preview_width = 0.5,
-            width = 0.87,
-            height = 0.80,
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.5,
+              width = 0.87,
+              height = 0.80,
+            },
           },
+    
           winblend = 5,
           file_ignore_patterns = { "%.git/", "node_modules", "%.cache" },
           color_devicons = true,

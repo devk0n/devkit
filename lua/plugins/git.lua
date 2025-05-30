@@ -1,7 +1,15 @@
+-- plugins/git.lua
 return {
   {
     "tpope/vim-fugitive",
-    cmd = { "Git", "G" }, -- lazy-load only when you run Git commands
+    cmd = { "Git", "G" },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup()
+    end,
   },
 }
 

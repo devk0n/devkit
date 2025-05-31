@@ -6,7 +6,7 @@ local opts = { noremap = true, silent = true }
 -- Basic: save, quit, clear
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlights" })
+map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear highlights" })
 
 -- Window navigation
 map("n", "<C-h>", "<C-w>h", opts)
@@ -15,8 +15,8 @@ map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
 -- Buffer navigation
-map("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-map("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 
 -- Buffer close
 map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
@@ -69,6 +69,7 @@ map("n", "<leader>et", function()
   vim.notify("No terminal window is currently open", vim.log.levels.WARN)
 end, { desc = "Focus terminal window" })
 
-map("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal size=12<CR>", { desc = "Toggle Terminal" })
-map("t", "<Esc>", [[<C-\><C-n>]], opts)
+map("n", "<leader>sv", "<cmd>source $MYVIMRC<CR>", { desc = "Source config" })
+map("n", "<leader>pv", "<cmd>edit $MYVIMRC<CR>", { desc = "Edit config" })
+map("n", "<leader><leader>", "<cmd>so %<CR>", { desc = "Source current file" })
 

@@ -38,8 +38,13 @@ return {
             },
           },
     
-          winblend = 5,
-          file_ignore_patterns = { "%.git/", "node_modules", "%.cache" },
+          winblend = 0,
+          file_ignore_patterns = {
+            "%.git/",
+            "node_modules",
+            "%.cache",
+            "build"
+          },
           color_devicons = true,
           path_display = { "truncate" },
         },

@@ -49,16 +49,17 @@ return {
         end,
       })
 
-      -- Auto-open Neo-tree if no file is passed
-      vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-          if vim.fn.argc() == 0 then
-            pcall(function()
-              vim.cmd("Neotree filesystem reveal left")
-            end)
-          end
-        end,
-      })
+      if vim.g.auto_open_neotree_on_start ~= false then
+        vim.api.nvim_create_autocmd("VimEnter", {
+          callback = function()
+            if vim.fn.argc() == 0 then
+              pcall(function()
+                vim.cmd("Neotree filesystem reveal left")
+              end)
+            end
+          end,
+        })
+      end
     end,
   },
 }

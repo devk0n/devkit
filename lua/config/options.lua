@@ -48,7 +48,8 @@ opt.swapfile = false
 opt.backup = false
 opt.undofile = true
 
--- Disable netrw (if using neo-tree)
--- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
+-- ~/.config/nvim/lua/config/highlights.lua
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e1e1e" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1e1e1e", fg = "#d4be98" })
+
 

@@ -38,6 +38,7 @@ return {
     -- Key bindings
     vim.keymap.set("n", "<leader>tt", _TOGGLE_MAIN_TERM, { desc = "Toggle main terminal" })
     vim.keymap.set("n", "<leader>tf", _TOGGLE_FLOAT_TERM, { desc = "Toggle floating terminal" })
+    vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal normal mode" })
   end,
 }
 

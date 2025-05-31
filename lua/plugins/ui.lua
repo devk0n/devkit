@@ -9,12 +9,13 @@ return {
     config = function()
       vim.o.background = "dark"
       require("gruvbox").setup({
-        contrast = "hard",
+        contrast = "soft",
         italic = {
           strings = false,
           comments = true,
           folds = true,
         },
+        transparent_mode = true,
       })
       vim.cmd.colorscheme("gruvbox")
     end,
@@ -61,8 +62,8 @@ return {
         options = {
           mode = "buffers",
           diagnostics = "nvim_lsp",
-          separator_style = "slant",
-          always_show_bufferline = true,
+          separator_style = "thick",
+          always_show_bufferline = false,
         },
       })
     end,

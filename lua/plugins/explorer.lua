@@ -30,15 +30,15 @@ return {
           follow_current_file = {
             enabled = true,
           },
-          bind_to_cwd = true, -- ← This makes Neo-tree root match Neovim's cwd
+          bind_to_cwd = true,
           cwd_target = {
-            sidebar = "tab",  -- or "window" depending on your preference
+            sidebar = "tab",
             current = "window",
           },
         },
       })
 
-      -- Sync Neo-tree root with Neovim's working directory (so :e uses it)
+      -- Sync Neo-tree root with cwd
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "neo-tree filesystem [a-z]*",
         callback = function()
@@ -49,7 +49,7 @@ return {
         end,
       })
 
-      -- Optional: Safely open Neo-tree if no file is passed to Neovim
+      -- Auto-open Neo-tree if no file is passed
       vim.api.nvim_create_autocmd("VimEnter", {
         callback = function()
           if vim.fn.argc() == 0 then

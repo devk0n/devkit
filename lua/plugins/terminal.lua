@@ -1,49 +1,43 @@
--- explorer.lua: Neo-tree setup (left sidebar file tree)
+-- terminal.lua
 
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- recommended
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require("neo-tree").setup({
-        close_if_last_window = true,
-        popup_border_style = "rounded",
-        enable_git_status = true,
-        enable_diagnostics = true,
-        window = {
-          position = "left",
-          width = 30,
-          mappings = {
-            ["<space>"] = "none",
-          },
-        },
-        filesystem = {
-          filtered_items = {
-            hide_dotfiles = false,
-            hide_gitignored = false,
-          },
-          follow_current_file = {
-            enabled = true,
-          },
-        },
-      })
+  "akinsho/toggleterm.nvim",
+  version = "*", -- use the latest version
+  config = function()
+    require("toggleterm").setup({
+      size = 15,
+      open_mapping = [[<C-\>]],
+      hide_numbers = true,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = 1,
+      start_in_insert = true,
+      insert_mappings = true,
+      terminal_mappings = true,
+      persist_size = true,
+      direction = "horizontal", -- default split
+      close_on_exit = true,
+      shell = vim.o.shell,
+    })
 
-      -- ✅ Prevent netrw error by delaying Neotree open until after UI load
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "VeryLazy",
-        callback = function()
-          -- Only open if no file is passed
-          if vim.fn.argc() == 0 then
-            vim.cmd("Neotree filesystem reveal left")
-          end
-        end,
-      })
-    end,
-  },
+    -- Keymaps
+    local Terminal = require("toggleterm.terminal").Terminal
+
+    -- Main terminal (bottom split)
+    local main_term = Terminal:new({ direction = "horizontal", hidden = true })
+    function _TOGGLE_MAIN_TERM()
+      main_term:toggle()
+    end
+
+    -- Floating terminal (for commands)
+    local float_term = Terminal:new({ direction = "float", hidden = true })
+    function _TOGGLE_FLOAT_TERM()
+      float_term:toggle()
+    end
+
+    -- Key bindings
+    vim.keymap.set("n", "<leader>tt", _TOGGLE_MAIN_TERM, { desc = "Toggle main terminal" })
+    vim.keymap.set("n", "<leader>tf", _TOGGLE_FLOAT_TERM, { desc = "Toggle floating terminal" })
+  end,
 }
 
